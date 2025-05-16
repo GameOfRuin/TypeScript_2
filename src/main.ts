@@ -29,58 +29,71 @@
 //   info: {},
 // };
 
-type A = {
-  first: string;
-  second: {
-    third: string;
-    fourth?: string;
-    fifth: {
-      sixth?: {
-        tenth: {
-          twelfth?: {
-            thirteenth: {
-              fifteenth: {
-                sixteenth?: {
-                  last: 'Достучались';
-                };
-              };
-            };
-            fourteenth: string;
-          };
-        };
-        eleventh: string;
-      };
-      seventh: number;
-      eight: string;
-    };
-  };
-};
+// type A = {
+//   first: string;
+//   second: {
+//     third: string;
+//     fourth?: string;
+//     fifth: {
+//       sixth?: {
+//         tenth: {
+//           twelfth?: {
+//             thirteenth: {
+//               fifteenth: {
+//                 sixteenth?: {
+//                   last: 'Достучались';
+//                 };
+//               };
+//             };
+//             fourteenth: string;
+//           };
+//         };
+//         eleventh: string;
+//       };
+//       seventh: number;
+//       eight: string;
+//     };
+//   };
+// };
+//
+// const a: A = {
+//   first: 'z',
+//   second: {
+//     third: 'f',
+//     fourth: 'a',
+//     fifth: {
+//       sixth: {
+//         tenth: {
+//           twelfth: {
+//             thirteenth: {
+//               fifteenth: {
+//                 sixteenth: {
+//                   last: 'Достучались',
+//                 },
+//               },
+//             },
+//             fourteenth: 's',
+//           },
+//         },
+//         eleventh: 'kk',
+//       },
+//       seventh: 8,
+//       eight: 'b',
+//     },
+//   },
+// };
+//
+// console.log(a.second.fifth.sixth?.tenth.twelfth?.thirteenth.fifteenth.sixteenth?.last);
 
-const a: A = {
-  first: 'z',
-  second: {
-    third: 'f',
-    fourth: 'a',
-    fifth: {
-      sixth: {
-        tenth: {
-          twelfth: {
-            thirteenth: {
-              fifteenth: {
-                sixteenth: {
-                  last: 'Достучались',
-                },
-              },
-            },
-            fourteenth: 's',
-          },
-        },
-        eleventh: 'kk',
-      },
-      seventh: 8,
-      eight: 'b',
-    },
-  },
-};
+import chalk from 'chalk';
 
-console.log(a.second.fifth.sixth?.tenth.twelfth?.thirteenth.fifteenth.sixteenth?.last);
+const stars = [];
+const count = 10;
+const colorName = [chalk.blue, chalk.green, chalk.red];
+
+for (let i = 0; i < count; i++) {
+  const color = colorName[i % 3];
+
+  stars.push(color('*'));
+}
+console.log(stars.join(' - '));
