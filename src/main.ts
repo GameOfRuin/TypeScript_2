@@ -85,15 +85,25 @@
 //
 // console.log(a.second.fifth.sixth?.tenth.twelfth?.thirteenth.fifteenth.sixteenth?.last);
 
-import chalk from 'chalk';
+// import chalk from 'chalk';
+//
+// const stars = [];
+// const count = 10;
+// const colorName = [chalk.blue, chalk.green, chalk.red];
+//
+// for (let i = 0; i < count; i++) {
+//   const color = colorName[i % 3];
+//
+//   stars.push(color('*'));
+// }
+// console.log(stars.join(' - '));
 
-const stars = [];
-const count = 10;
-const colorName = [chalk.blue, chalk.green, chalk.red];
+type cars = 'BMW' | 'AUDI' | 'MERSEDES';
 
-for (let i = 0; i < count; i++) {
-  const color = colorName[i % 3];
+type numbersOfCars = 2 | 4 | 6;
 
-  stars.push(color('*'));
-}
-console.log(stars.join(' - '));
+type shop = {
+  storeName: string;
+  cars: cars;
+  numbers: numbersOfCars;
+};
