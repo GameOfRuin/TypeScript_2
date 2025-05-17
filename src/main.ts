@@ -215,35 +215,61 @@
 // // console.log(Object.values(Numbers1));
 // console.log(sumAll(Numbers1));
 
-import { faker } from '@faker-js/faker/locale/en';
+// import { faker } from '@faker-js/faker/locale/en';
+//
+// type user = {
+//   name: string;
+//   age?: number | null;
+// };
+//
+// const stastFound = (people: user[]): number | string | void => {
+//   for (const person of people) {
+//     if (person.name === 'stas') {
+//       return person.age ?? 'Возраста нет';
+//     }
+//   }
+//   return console.log('Объект не найден');
+// };
+//
+// const firstMan: user = {
+//   name: faker.person.fullName(),
+// };
+//
+// const secondMan: user = {
+//   name: 'stas',
+//   age: 334,
+// };
+// const thirdMan: user = {
+//   name: faker.person.fullName(),
+//   age: 22,
+// };
+//
+// const people = [firstMan, secondMan, thirdMan];
+//
+// console.log(stastFound(people));
 
-type user = {
-  name: string;
-  age?: number | null;
-};
+import dayjs from 'dayjs';
 
-const stastFound = (people: user[]): number | string | void => {
-  for (const person of people) {
-    if (person.name === 'stas') {
-      return person.age ?? 'Возраста нет';
-    }
+type VoidCallback = () => void;
+
+const timeDate = (Date: string) => {
+  const now = dayjs();
+  if (now.isAfter(Date, 'day')) {
+    return console.log('прошлое');
   }
-  return console.log('Объект не найден');
+  if (now.isBefore(Date, 'day')) {
+    return console.log(',будущее');
+  }
+  return console.log();
 };
 
-const firstMan: user = {
-  name: faker.person.fullName(),
+const cbFuture = () => {
+  console.log(`Это явно будущее`);
 };
 
-const secondMan: user = {
-  name: 'stas',
-  age: 334,
-};
-const thirdMan: user = {
-  name: faker.person.fullName(),
-  age: 22,
+const cbPast = () => {
+  console.log(`Вы в прошлом`);
 };
 
-const people = [firstMan, secondMan, thirdMan];
-
-console.log(stastFound(people));
+const datee = '2025-05-17T10:00:00.000Z';
+console.log(timeDate(datee));
