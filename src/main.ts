@@ -252,13 +252,13 @@ import dayjs from 'dayjs';
 
 type VoidCallback = () => void;
 
-const timeDate = (Date: string) => {
+const timeDate = (Date: string, cbFuture: VoidCallback, cbPast: VoidCallback) => {
   const now = dayjs();
   if (now.isAfter(Date, 'day')) {
-    return console.log('прошлое');
+    cbPast();
   }
   if (now.isBefore(Date, 'day')) {
-    return console.log(',будущее');
+    cbFuture();
   }
   return console.log();
 };
@@ -271,5 +271,5 @@ const cbPast = () => {
   console.log(`Вы в прошлом`);
 };
 
-const datee = '2025-05-17T10:00:00.000Z';
-console.log(timeDate(datee));
+const datee = '2025-05-12T10:00:00.000Z';
+console.log(timeDate(datee, cbFuture, cbPast));
