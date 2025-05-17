@@ -173,15 +173,44 @@
 // console.log(Color[Math.round(Math.random() * 2)]);
 // console.log(users);
 
-const ncd = (a: number): number | void => {
-  for (let i = 2; i < a; i++) {
-    if (!(a % i)) {
-      // Находим наименьший делитель
-      return a / i; // Возвращаем наибольший делитель
-      break;
-    }
+// const ncd = (a: number): number | void => {
+//   for (let i = 2; i < a; i++) {
+//     if (!(a % i)) {
+//       // Находим наименьший делитель
+//       return a / i; // Возвращаем наибольший делитель
+//       break;
+//     }
+//   }
+//   return console.log('Чисто простое');
+// };
+//
+// console.log(ncd(11));
+
+type A = {
+  number: number;
+  number1: number;
+  number2: number;
+  number3: number;
+};
+const sumAll = (Numbers1: A): number => {
+  const values = Object.values(Numbers1);
+  let sum = 0;
+  for (const value of values) {
+    sum += value;
   }
-  return console.log('Чисто простое');
+  // let sum: number = 0;
+  // for (const numbers1Key in Numbers1) {
+  //   const value = Numbers1[numbers1Key as keyof A]; // Не понял этого момента
+  //   sum += value;
+  // }
+  return sum;
 };
 
-console.log(ncd(11));
+const Numbers1: A = {
+  number: 2,
+  number1: 3,
+  number2: 6,
+  number3: 7,
+};
+// console.log(Object.values(Numbers1));
+console.log(sumAll(Numbers1));
