@@ -98,12 +98,77 @@
 // }
 // console.log(stars.join(' - '));
 
-type cars = 'BMW' | 'AUDI' | 'MERSEDES';
+// type cars = 'BMW' | 'AUDI' | 'MERSEDES';
+//
+// type numbersOfCars = 2 | 4 | 6;
+//
+// type shop = {
+//   storeName: string;
+//   cars: cars;
+//   numbers: numbersOfCars;
+// };
 
-type numbersOfCars = 2 | 4 | 6;
+// import { faker } from '@faker-js/faker';
+// import chalk from 'chalk';
+//
+// const colorName = [chalk.blue, chalk.green, chalk.red];
+//
+// type users = {
+//   name: string;
+//   email: string;
+//   sexType: string;
+//   dateOfBirth: string;
+// };
+//
+// const user: users = {
+//   name: faker.person.fullName(),
+//   email: faker.internet.email(),
+//   sexType: faker.person.sexType(),
+//   dateOfBirth: faker.date.birthdate().toString(),
+// };
+//
+// for (const userKey in user) {
+//   const nuberOfRandomColor = Math.round(Math.random() * 2);
+//   const randomColor = colorName[nuberOfRandomColor];
+//   console.log(randomColor(user[userKey as keyof users]));
+// }
 
-type shop = {
-  storeName: string;
-  cars: cars;
-  numbers: numbersOfCars;
+import { faker } from '@faker-js/faker';
+
+enum Color {
+  green,
+  blue,
+  red,
+}
+
+type User = {
+  name: string;
+  color: string;
+  id: string;
+  email: string;
 };
+
+function createRandomUser(): User {
+  return {
+    name: faker.person.fullName(),
+    color: faker.helpers.arrayElement(['blue', 'green', 'red']),
+    id: faker.string.uuid(),
+    email: faker.internet.email(),
+  };
+}
+
+const user = createRandomUser();
+const user2 = createRandomUser();
+const user3 = createRandomUser();
+const users = [user, user2, user3];
+
+for (const user1 of users) {
+  // eslint-disable-next-line no-debugger
+  debugger;
+  if (user1.color === Color[Math.round(Math.random() * 2)]) {
+    console.log(user1);
+  }
+}
+
+// console.log(Color[Math.round(Math.random() * 2)]);
+// console.log(users);
