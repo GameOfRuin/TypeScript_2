@@ -133,42 +133,55 @@
 //   console.log(randomColor(user[userKey as keyof users]));
 // }
 
-import { faker } from '@faker-js/faker';
-
-enum Color {
-  green,
-  blue,
-  red,
-}
-
-type User = {
-  name: string;
-  color: string;
-  id: string;
-  email: string;
-};
-
-function createRandomUser(): User {
-  return {
-    name: faker.person.fullName(),
-    color: faker.helpers.arrayElement(['blue', 'green', 'red']),
-    id: faker.string.uuid(),
-    email: faker.internet.email(),
-  };
-}
-
-const user = createRandomUser();
-const user2 = createRandomUser();
-const user3 = createRandomUser();
-const users = [user, user2, user3];
-
-for (const user1 of users) {
-  // eslint-disable-next-line no-debugger
-  debugger;
-  if (user1.color === Color[Math.round(Math.random() * 2)]) {
-    console.log(user1);
-  }
-}
+// import { faker } from '@faker-js/faker';
+//
+// enum Color {
+//   green,
+//   blue,
+//   red,
+// }
+//
+// type User = {
+//   name: string;
+//   color: string;
+//   id: string;
+//   email: string;
+// };
+//
+// function createRandomUser(): User {
+//   return {
+//     name: faker.person.fullName(),
+//     color: faker.helpers.arrayElement(['blue', 'green', 'red']),
+//     id: faker.string.uuid(),
+//     email: faker.internet.email(),
+//   };
+// }
+//
+// const user = createRandomUser();
+// const user2 = createRandomUser();
+// const user3 = createRandomUser();
+// const users = [user, user2, user3];
+//
+// for (const user1 of users) {
+//   // eslint-disable-next-line no-debugger
+//   debugger;
+//   if (user1.color === Color[Math.round(Math.random() * 2)]) {
+//     console.log(user1);
+//   }
+// }
 
 // console.log(Color[Math.round(Math.random() * 2)]);
 // console.log(users);
+
+const ncd = (a: number): number | void => {
+  for (let i = 2; i < a; i++) {
+    if (!(a % i)) {
+      // Находим наименьший делитель
+      return a / i; // Возвращаем наибольший делитель
+      break;
+    }
+  }
+  return console.log('Чисто простое');
+};
+
+console.log(ncd(11));
