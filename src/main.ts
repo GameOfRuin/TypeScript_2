@@ -225,10 +225,8 @@ type user = {
 const stastFound = (people: user[]): number | string | void => {
   for (const person of people) {
     if (person.name === 'stas') {
-      if (person.age !== null && person.age !== undefined) {
-        return person.age;
-      }
-      return console.log('Возраста нет');
+      const ageStatus = person.age ?? 'Возраста нет';
+      return ageStatus;
     }
   }
   return console.log('Объект не найден');
@@ -239,8 +237,8 @@ const firstMan: user = {
 };
 
 const secondMan: user = {
-  name: 'stas2',
-  age: null,
+  name: 'stas',
+  age: 334,
 };
 const thirdMan: user = {
   name: faker.person.fullName(),
