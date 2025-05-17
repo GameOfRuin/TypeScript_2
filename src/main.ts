@@ -248,28 +248,47 @@
 //
 // console.log(stastFound(people));
 
-import dayjs from 'dayjs';
+// import dayjs from 'dayjs';
+//
+// type VoidCallback = () => void;
+//
+// const timeDate = (Date: string, cbFuture: VoidCallback, cbPast: VoidCallback) => {
+//   const now = dayjs();
+//   if (now.isAfter(Date, 'day')) {
+//     cbPast();
+//   }
+//   if (now.isBefore(Date, 'day')) {
+//     cbFuture();
+//   }
+//   return console.log();
+// };
+//
+// const cbFuture = () => {
+//   console.log(`Это явно будущее`);
+// };
+//
+// const cbPast = () => {
+//   console.log(`Вы в прошлом`);
+// };
+//
+// const datee = '2025-05-12T10:00:00.000Z';
+// console.log(timeDate(datee, cbFuture, cbPast));
+const array = [
+  [1, 2, 9],
+  [2, 3, 6],
+  [5, 5, 25],
+  [8, 3, 222],
+  [0, 0, 0],
+];
 
-type VoidCallback = () => void;
-
-const timeDate = (Date: string, cbFuture: VoidCallback, cbPast: VoidCallback) => {
-  const now = dayjs();
-  if (now.isAfter(Date, 'day')) {
-    cbPast();
+const checkResult = (array: number[][]) => {
+  let count = 0;
+  for (const never of array) {
+    // @ts-ignore
+    const result: boolean = never[0] * never[1] === never[2];
+    console.log(`Выражение ${array[count]}`, result);
+    count++;
   }
-  if (now.isBefore(Date, 'day')) {
-    cbFuture();
-  }
-  return console.log();
 };
 
-const cbFuture = () => {
-  console.log(`Это явно будущее`);
-};
-
-const cbPast = () => {
-  console.log(`Вы в прошлом`);
-};
-
-const datee = '2025-05-12T10:00:00.000Z';
-console.log(timeDate(datee, cbFuture, cbPast));
+console.log(checkResult(array));
