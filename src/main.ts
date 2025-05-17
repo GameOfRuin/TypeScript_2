@@ -225,8 +225,7 @@ type user = {
 const stastFound = (people: user[]): number | string | void => {
   for (const person of people) {
     if (person.name === 'stas') {
-      const ageStatus = person.age ?? 'Возраста нет';
-      return ageStatus;
+      return person.age ?? 'Возраста нет';
     }
   }
   return console.log('Объект не найден');
@@ -245,6 +244,6 @@ const thirdMan: user = {
   age: 22,
 };
 
-const people = [firstMan, secondMan, secondMan];
+const people = [firstMan, secondMan, thirdMan];
 
 console.log(stastFound(people));
