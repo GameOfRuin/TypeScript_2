@@ -186,31 +186,67 @@
 //
 // console.log(ncd(11));
 
-type A = {
-  number: number;
-  number1: number;
-  number2: number;
-  number3: number;
-};
-const sumAll = (Numbers1: A): number => {
-  const values = Object.values(Numbers1);
-  let sum = 0;
-  for (const value of values) {
-    sum += value;
-  }
-  // let sum: number = 0;
-  // for (const numbers1Key in Numbers1) {
-  //   const value = Numbers1[numbers1Key as keyof A]; // Не понял этого момента
-  //   sum += value;
-  // }
-  return sum;
+// type A = {
+//   number: number;
+//   number1: number;
+//   number2: number;
+//   number3: number;
+// };
+// const sumAll = (Numbers1: A): number => {
+//   const values = Object.values(Numbers1);
+//   let sum = 0;
+//   for (const value of values) {
+//     sum += value;
+//   }
+//   // let sum: number = 0;
+//   // for (const numbers1Key in Numbers1) {
+//   //   const value = Numbers1[numbers1Key as keyof A]; // Не понял этого момента
+//   //   sum += value;
+//   // }
+//   return sum;
+// };
+//
+// const Numbers1: A = {
+//   number: 2,
+//   number1: 3,
+//   number2: 6,
+//   number3: 7,
+// };
+// // console.log(Object.values(Numbers1));
+// console.log(sumAll(Numbers1));
+
+import { faker } from '@faker-js/faker/locale/en';
+
+type user = {
+  name: string;
+  age?: number | null;
 };
 
-const Numbers1: A = {
-  number: 2,
-  number1: 3,
-  number2: 6,
-  number3: 7,
+const stastFound = (people: user[]): number | string | void => {
+  for (const person of people) {
+    if (person.name === 'stas') {
+      if (person.age !== null && person.age !== undefined) {
+        return person.age;
+      }
+      return console.log('Возраста нет');
+    }
+  }
+  return console.log('Объект не найден');
 };
-// console.log(Object.values(Numbers1));
-console.log(sumAll(Numbers1));
+
+const firstMan: user = {
+  name: faker.person.fullName(),
+};
+
+const secondMan: user = {
+  name: 'stas2',
+  age: null,
+};
+const thirdMan: user = {
+  name: faker.person.fullName(),
+  age: 22,
+};
+
+const people = [firstMan, secondMan, secondMan];
+
+console.log(stastFound(people));
