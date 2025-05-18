@@ -307,23 +307,77 @@
 // };
 // console.log(countTypes(3, true, 'a', 1, {}, () => {}, 4, [], undefined, false, 0, undefined, {}, ''));
 
-type newWord = { [key: string]: string };
+// type newWord = { [key: string]: string };
+//
+// const source = 'the quick brown fox jumps over the lazy dog';
+// const custom = 'oak lgypb wited zts qgfch tuki oak mjrn xtv';
+// const converted = 'ntg ajuk fjbydv vikjo citvikhh yd mkjidydv qjujhpiyco. ptdvijoh!';
+//
+// const comparison: newWord = {};
+// let count = 0;
+// let result = '';
+//
+// for (const sourceElement of source) {
+//   // Ключ это последовательные буквы из custom, поля это буквы из оригинала
+//   comparison[custom[count]] = sourceElement;
+//   count++;
+// }
+//
+// for (const convertedElement of converted) {
+//   result += comparison[convertedElement] ?? convertedElement;
+// }
+// console.log(result);
 
-const source = 'the quick brown fox jumps over the lazy dog';
-const custom = 'oak lgypb wited zts qgfch tuki oak mjrn xtv';
-const converted = 'ntg ajuk fjbydv vikjo citvikhh yd mkjidydv qjujhpiyco. ptdvijoh!';
+const testCases = [
+  [10000, { name: 'День рождения.mp4', size: 1, units: 'gb' }, { speedPerSecond: 100, units: 'kb' }],
+  [1024, { name: 'Отчёт.docx', size: 1023443, units: 'kb' }, { speedPerSecond: 1, units: 'mb' }],
+  [1, { name: 'Голосовое сообщение.mp3', size: 1, units: 'b' }, { speedPerSecond: 1000, units: 'gb' }],
+  [86402, { name: 'Корги.png', size: 100.45, units: 'mb' }, { speedPerSecond: 1162.6, units: 'b' }],
+  [100450000000, { name: 'GTA V', size: 100.45, units: 'gb' }, { speedPerSecond: 1, units: 'b' }],
+] as const;
 
-const comparison: newWord = {};
-let count = 0;
-let result = '';
+type fileInfo = {
+  name: string;
+  size: number;
+  units: string;
+};
 
-for (const sourceElement of source) {
-  // Ключ это последовательные буквы из custom, поля это буквы из оригинала
-  comparison[custom[count]] = sourceElement;
-  count++;
+type speedInfo = {
+  speedPerSecond: number;
+  units: string;
+};
+
+const convertToByti = (size: number, units: string): number => {
+  if (units === 'gb') {
+    return size * Math.pow(10, 9);
+  }
+  if (units === 'mb') {
+    return size * Math.pow(10, 6);
+  }
+  if (units === 'kb') {
+    return size * Math.pow(10, 3);
+  }
+  return size;
+};
+
+const downloadTimeCalculator = (file: fileInfo, speed: speedInfo) => {
+  const fileToBites = convertToByti(file.size, file.units);
+  const sppedToBites = convertToByti(speed.speedPerSecond, speed.units);
+
+  return fileToBites / sppedToBites;
+};
+
+/**
+ * Цикл для проверки каждого тест-кейса по очереди
+ */
+for (const testCase of testCases) {
+  const [expected, file, speed] = testCase;
+
+  const result = downloadTimeCalculator(file, speed);
+
+  if (result === expected) {
+    console.log(`Расчеты верны для файла "${file.name}"! \tРезультат: ${result}  | Ожидаемый: ${expected}`);
+  } else {
+    console.log(`Расчеты НЕВЕРНЫ для файла "${file.name}"! \tРезультат: ${result}  | Ожидаемый: ${expected}`);
+  }
 }
-
-for (const convertedElement of converted) {
-  result += comparison[convertedElement] ?? convertedElement;
-}
-console.log(result);
