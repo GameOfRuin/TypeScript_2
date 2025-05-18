@@ -328,56 +328,94 @@
 // }
 // console.log(result);
 
-const testCases = [
-  [10000, { name: 'День рождения.mp4', size: 1, units: 'gb' }, { speedPerSecond: 100, units: 'kb' }],
-  [1024, { name: 'Отчёт.docx', size: 1023443, units: 'kb' }, { speedPerSecond: 1, units: 'mb' }],
-  [1, { name: 'Голосовое сообщение.mp3', size: 1, units: 'b' }, { speedPerSecond: 1000, units: 'gb' }],
-  [86402, { name: 'Корги.png', size: 100.45, units: 'mb' }, { speedPerSecond: 1162.6, units: 'b' }],
-  [100450000000, { name: 'GTA V', size: 100.45, units: 'gb' }, { speedPerSecond: 1, units: 'b' }],
+// const testCases = [
+//   [10000, { name: 'День рождения.mp4', size: 1, units: 'gb' }, { speedPerSecond: 100, units: 'kb' }],
+//   [1024, { name: 'Отчёт.docx', size: 1023443, units: 'kb' }, { speedPerSecond: 1, units: 'mb' }],
+//   [1, { name: 'Голосовое сообщение.mp3', size: 1, units: 'b' }, { speedPerSecond: 1000, units: 'gb' }],
+//   [86402, { name: 'Корги.png', size: 100.45, units: 'mb' }, { speedPerSecond: 1162.6, units: 'b' }],
+//   [100450000000, { name: 'GTA V', size: 100.45, units: 'gb' }, { speedPerSecond: 1, units: 'b' }],
+// ] as const;
+//
+// type fileInfo = {
+//   name: string;
+//   size: number;
+//   units: string;
+// };
+//
+// type speedInfo = {
+//   speedPerSecond: number;
+//   units: string;
+// };
+//
+// const convertToByti = (size: number, units: string): number => {
+//   if (units === 'gb') {
+//     return size * Math.pow(10, 9);
+//   }
+//   if (units === 'mb') {
+//     return size * Math.pow(10, 6);
+//   }
+//   if (units === 'kb') {
+//     return size * Math.pow(10, 3);
+//   }
+//   return size;
+// };
+//
+// const downloadTimeCalculator = (file: fileInfo, speed: speedInfo) => {
+//   const fileToBites = convertToByti(file.size, file.units);
+//   const sppedToBites = convertToByti(speed.speedPerSecond, speed.units);
+//
+//   return fileToBites / sppedToBites;
+// };
+//
+// /**
+//  * Цикл для проверки каждого тест-кейса по очереди
+//  */
+// for (const testCase of testCases) {
+//   const [expected, file, speed] = testCase;
+//
+//   const result = downloadTimeCalculator(file, speed);
+//
+//   if (result === expected) {
+//     console.log(`Расчеты верны для файла "${file.name}"! \tРезультат: ${result}  | Ожидаемый: ${expected}`);
+//   } else {
+//     console.log(`Расчеты НЕВЕРНЫ для файла "${file.name}"! \tРезультат: ${result}  | Ожидаемый: ${expected}`);
+//   }
+// }
+
+const tests = [
+  ['топот', true],
+  ['пот', false],
+  ['потоп', true],
+  ['кабак', true],
+  ['(())', false],
+  ['табат', true],
+  ['abab', false],
+  ['топпот', true],
+  ['()()', true],
+  ['', true],
+  ['123321', true],
+  ['())(', true],
+  ['abba', true],
+  ['а роза упала на лапу азора', false], // Пробелы не совпадают!
 ] as const;
 
-type fileInfo = {
-  name: string;
-  size: number;
-  units: string;
+const isPalindrome = (word: string): boolean => {
+  for (let i = 0; i <= Math.floor(word.length / 2); i++) {
+    if (word[i] !== word[word.length - 1 - i]) {
+      return false;
+    }
+  }
+  return true;
 };
 
-type speedInfo = {
-  speedPerSecond: number;
-  units: string;
-};
+for (const test of tests) {
+  const [word, expected] = test;
 
-const convertToByti = (size: number, units: string): number => {
-  if (units === 'gb') {
-    return size * Math.pow(10, 9);
+  const result = isPalindrome(word);
+  if (result !== expected) {
+    console.log(`Для слова "${word}" тест не прошел. Ожидалось: ${expected} | Получено: ${result}`);
+    continue;
   }
-  if (units === 'mb') {
-    return size * Math.pow(10, 6);
-  }
-  if (units === 'kb') {
-    return size * Math.pow(10, 3);
-  }
-  return size;
-};
 
-const downloadTimeCalculator = (file: fileInfo, speed: speedInfo) => {
-  const fileToBites = convertToByti(file.size, file.units);
-  const sppedToBites = convertToByti(speed.speedPerSecond, speed.units);
-
-  return fileToBites / sppedToBites;
-};
-
-/**
- * Цикл для проверки каждого тест-кейса по очереди
- */
-for (const testCase of testCases) {
-  const [expected, file, speed] = testCase;
-
-  const result = downloadTimeCalculator(file, speed);
-
-  if (result === expected) {
-    console.log(`Расчеты верны для файла "${file.name}"! \tРезультат: ${result}  | Ожидаемый: ${expected}`);
-  } else {
-    console.log(`Расчеты НЕВЕРНЫ для файла "${file.name}"! \tРезультат: ${result}  | Ожидаемый: ${expected}`);
-  }
+  console.log(`Слово "${word}" успешно. Результат: ${result}`);
 }
