@@ -292,17 +292,21 @@
 // };
 //
 // console.log(checkResult(array));
-type count = { [key: string]: number };
+// type count = { [key: string]: number };
+//
+// export const countTypes = (...args: any[]): count => {
+//   const counter: count = {};
+//   for (const arg of args) {
+//     const type = typeof arg;
+//     if (counter[type] === undefined) {
+//       counter[type] = 0;
+//     }
+//     counter[type]++;
+//   }
+//   return counter;
+// };
+// console.log(countTypes(3, true, 'a', 1, {}, () => {}, 4, [], undefined, false, 0, undefined, {}, ''));
 
-export const countTypes = (...args: any[]): count => {
-  const counter: count = {};
-  for (const arg of args) {
-    const type = typeof arg;
-    if (counter[type] === undefined) {
-      counter[type] = 0;
-    }
-    counter[type]++;
-  }
-  return counter;
-};
-console.log(countTypes(3, true, 'a', 1, {}, () => {}, 4, [], undefined, false, 0, undefined, {}, ''));
+const source = 'the quick brown fox jumps over the lazy dog';
+const custom = 'oak lgypb wited zts qgfch tuki oak mjrn xtv';
+const converted = 'ntg ajuk fjbydv vikjo citvikhh yd mkjidydv qjujhpiyco. ptdvijoh!';
