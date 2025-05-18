@@ -307,6 +307,23 @@
 // };
 // console.log(countTypes(3, true, 'a', 1, {}, () => {}, 4, [], undefined, false, 0, undefined, {}, ''));
 
+type newWord = { [key: string]: string };
+
 const source = 'the quick brown fox jumps over the lazy dog';
 const custom = 'oak lgypb wited zts qgfch tuki oak mjrn xtv';
 const converted = 'ntg ajuk fjbydv vikjo citvikhh yd mkjidydv qjujhpiyco. ptdvijoh!';
+
+const comparison: newWord = {};
+let count = 0;
+let result = '';
+
+for (const sourceElement of source) {
+  // Ключ это последовательные буквы из custom, поля это буквы из оригинала
+  comparison[custom[count]] = sourceElement;
+  count++;
+}
+
+for (const convertedElement of converted) {
+  result += comparison[convertedElement] ?? convertedElement;
+}
+console.log(result);
