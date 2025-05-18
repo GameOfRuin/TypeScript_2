@@ -273,22 +273,36 @@
 //
 // const datee = '2025-05-12T10:00:00.000Z';
 // console.log(timeDate(datee, cbFuture, cbPast));
-const array = [
-  [1, 2, 9],
-  [2, 3, 6],
-  [5, 5, 25],
-  [8, 3, 222],
-  [0, 0, 0],
-];
+// const array = [
+//   [1, 2, 9],
+//   [2, 3, 6],
+//   [5, 5, 25],
+//   [8, 3, 222],
+//   [0, 0, 0],
+// ];
+//
+// const checkResult = (array: number[][]) => {
+//   let count = 0;
+//   for (const never of array) {
+//     // @ts-ignore
+//     const result: boolean = never[0] * never[1] === never[2];
+//     console.log(`Выражение ${array[count]}`, result);
+//     count++;
+//   }
+// };
+//
+// console.log(checkResult(array));
+type count = { [key: string]: number };
 
-const checkResult = (array: number[][]) => {
-  let count = 0;
-  for (const never of array) {
-    // @ts-ignore
-    const result: boolean = never[0] * never[1] === never[2];
-    console.log(`Выражение ${array[count]}`, result);
-    count++;
+export const countTypes = (...args: any[]): count => {
+  const counter: count = {};
+  for (const arg of args) {
+    const type = typeof arg;
+    if (counter[type] === undefined) {
+      counter[type] = 0;
+    }
+    counter[type]++;
   }
+  return counter;
 };
-
-console.log(checkResult(array));
+console.log(countTypes(3, true, 'a', 1, {}, () => {}, 4, [], undefined, false, 0, undefined, {}, ''));
