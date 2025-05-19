@@ -500,29 +500,53 @@
 // }
 // console.log(counter);
 
-import { faker } from '@faker-js/faker/locale/en';
+// import { faker } from '@faker-js/faker/locale/en';
+//
+// type peuple = {
+//   name: string;
+//   age: number;
+//   gender: string;
+// };
+//
+// const Persons = (number: number): peuple[] => {
+//   const multyHuman: peuple[] = [];
+//   for (let i = 0; i < number; i++) {
+//     const human: peuple = {
+//       name: faker.person.fullName(),
+//       age: Math.round(Math.random() * 100),
+//       gender: faker.person.sex(),
+//     };
+//     multyHuman.push(human);
+//   }
+//   return multyHuman;
+// };
+//
+// const testGroup = Persons(5);
+//
+// const test = testGroup.find((person) => person.age > 10);
+//
+// console.log(test);
 
-type peuple = {
-  name: string;
-  age: number;
-  gender: string;
+const storage = [
+  { age: 10, name: 'first' },
+  { age: 20, name: 'second' },
+  { age: 30, name: 'third' },
+  { age: 40, name: 'fourth' },
+];
+
+const smartSearch = (arr: any[], property: any, value: any) => {
+  const resulr = arr.find((person) => person[property] === value);
+  return resulr;
 };
 
-const Persons = (number: number): peuple[] => {
-  const multyHuman: peuple[] = [];
-  for (let i = 0; i < number; i++) {
-    const human: peuple = {
-      name: faker.person.fullName(),
-      age: Math.round(Math.random() * 100),
-      gender: faker.person.sex(),
-    };
-    multyHuman.push(human);
-  }
-  return multyHuman;
-};
+const person1 = smartSearch(storage, 'age', 30);
+console.log(person1);
+// { age: 30, name: 'third' }
 
-const testGroup = Persons(5);
+const person2 = smartSearch(storage, 'age', 10);
+console.log(person2);
+// { age: 10, name: 'first' }
 
-const test = testGroup.find((person) => person.age > 10);
-
-console.log(test);
+const person3 = smartSearch(storage, 'name', 'second');
+console.log(person3);
+// { age: 20, name: 'second' }
