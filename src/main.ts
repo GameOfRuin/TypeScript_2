@@ -527,6 +527,55 @@
 //
 // console.log(test);
 
+// const storage = [
+//   { age: 10, name: 'first' },
+//   { age: 20, name: 'second' },
+//   { age: 30, name: 'third' },
+//   { age: 40, name: 'fourth' },
+// ];
+//
+// const smartSearch = (arr: any[], property: any, value: any) => {
+//   const resulr = arr.find((person) => person[property] === value);
+//   return resulr;
+// };
+//
+// const person1 = smartSearch(storage, 'age', 30);
+// console.log(person1);
+// // { age: 30, name: 'third' }
+//
+// const person2 = smartSearch(storage, 'age', 10);
+// console.log(person2);
+// // { age: 10, name: 'first' }
+//
+// const person3 = smartSearch(storage, 'name', 'second');
+// console.log(person3);
+// // { age: 20, name: 'second' }
+
+// type User = {
+//   name: string;
+//   age: number;
+// };
+//
+// const users: User[] = [
+//   { name: 'Пользователь-1', age: 1 },
+//   { name: 'Пользователь-21', age: 21 },
+//   { name: 'Пользователь-30', age: 30 },
+//   { name: 'Пользователь-14', age: 14 },
+//   { name: 'Пользователь-18', age: 18 },
+//   { name: 'Пользователь--1', age: -1 },
+//   { name: 'Пользователь-1', age: 1 },
+// ];
+//
+// const deleteUser = users.filter((user) => user.age >= 18);
+// console.log(deleteUser);
+// /* Ожидаемый вывод:
+// [
+//   { name: 'Пользователь-21', age: 21 },
+//   { name: 'Пользователь-30', age: 30 },
+//   { name: 'Пользователь-18', age: 18 },
+// ]
+//  */
+
 const storage = [
   { age: 10, name: 'first' },
   { age: 20, name: 'second' },
@@ -534,19 +583,20 @@ const storage = [
   { age: 40, name: 'fourth' },
 ];
 
-const smartSearch = (arr: any[], property: any, value: any) => {
-  const resulr = arr.find((person) => person[property] === value);
-  return resulr;
-};
+const storage2 = storage.map((person) => {
+  return {
+    age: person.name,
+    name: person.age,
+    reversed: true,
+  };
+});
 
-const person1 = smartSearch(storage, 'age', 30);
-console.log(person1);
-// { age: 30, name: 'third' }
-
-const person2 = smartSearch(storage, 'age', 10);
-console.log(person2);
-// { age: 10, name: 'first' }
-
-const person3 = smartSearch(storage, 'name', 'second');
-console.log(person3);
-// { age: 20, name: 'second' }
+console.log(storage2);
+/* Ожидаемый вывод:
+[
+  { age: 'first', name: 10, reversed: true },
+  { age: 'second', name: 20, reversed: true },
+  { age: 'third', name: 30, reversed: true },
+  { age: 'fourth', name: 40, reversed: true }
+]
+*/
