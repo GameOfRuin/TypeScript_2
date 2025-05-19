@@ -382,40 +382,147 @@
 //   }
 // }
 
-const tests = [
-  ['топот', true],
-  ['пот', false],
-  ['потоп', true],
-  ['кабак', true],
-  ['(())', false],
-  ['табат', true],
-  ['abab', false],
-  ['топпот', true],
-  ['()()', true],
-  ['', true],
-  ['123321', true],
-  ['())(', true],
-  ['abba', true],
-  ['а роза упала на лапу азора', false], // Пробелы не совпадают!
-] as const;
+// const tests = [
+//   ['топот', true],
+//   ['пот', false],
+//   ['потоп', true],
+//   ['кабак', true],
+//   ['(())', false],
+//   ['табат', true],
+//   ['abab', false],
+//   ['топпот', true],
+//   ['()()', true],
+//   ['', true],
+//   ['123321', true],
+//   ['())(', true],
+//   ['abba', true],
+//   ['а роза упала на лапу азора', false], // Пробелы не совпадают!
+// ] as const;
+//
+// const isPalindrome = (word: string): boolean => {
+//   for (let i = 0; i <= Math.floor(word.length / 2); i++) {
+//     if (word[i] !== word[word.length - 1 - i]) {
+//       return false;
+//     }
+//   }
+//   return true;
+// };
+//
+// for (const test of tests) {
+//   const [word, expected] = test;
+//
+//   const result = isPalindrome(word);
+//   if (result !== expected) {
+//     console.log(`Для слова "${word}" тест не прошел. Ожидалось: ${expected} | Получено: ${result}`);
+//     continue;
+//   }
+//
+//   console.log(`Слово "${word}" успешно. Результат: ${result}`);
+// }
+// type figure = {
+//   name: string;
+//   type: string;
+//   color: string;
+//   border: string | null;
+//   size: string;
+// }
+//
+//
+// const first: figure = {
+//   name: 'Фигура №1',
+//   type: 'square',
+//   color: 'red',
+//   border: 'black',
+//   size: 'large',
+// };
+//
+// const second: figure = {
+//   name: 'Фигура №2',
+//   type: 'square',
+//   color: 'red',
+//   border: null,
+//   size: 'large',
+// };
+//
+// const third: figure = {
+//   name: 'Фигура №3',
+//   type: 'circle',
+//   color: 'red',
+//   border: 'black',
+//   size: 'large',
+// };
+//
+// const fourth: figure = {
+//   name: 'Фигура №4',
+//   type: 'square',
+//   color: 'green',
+//   border: 'black',
+//   size: 'large',
+// };
+//
+// const fifth: figure = {
+//   name: 'Фигура №5',
+//   type: 'square',
+//   color: 'red',
+//   border: 'black',
+//   size: 'small',
+// };
+//
+// const figures = [first, second, third, fourth, fifth];
+// const counter =  {};
+//
+// for (const figure of figures)
+//   for (const figureKey in figure) {
+//     if (figureKey === 'name'){ // Если ключ ame пропускаем
+//       continue
+//     }
+//     // @ts-ignore
+//     const nameType = figure[figureKey]; // берем поле из ключа
+//     // @ts-ignore
+//     if (!counter[nameType]){
+//       const name2 = figureKey;// Если такого поля в каинтере нет то создаем ключ по полю и поле с массивом b названием типа
+//       // @ts-ignore
+//       counter[nameType] = [name2]
+//     }
+//     // @ts-ignore
+//     // @ts-ignore
+//     const nameOfFigure = ${ // @ts-ignore
+//       figure.name};
+//     counter[nameType].push({name: nameOfFigure});
+//   }
+//
+// for (const counterKey in counter) {
+//   // @ts-ignore
+//   if (counter[counterKey].length === 2){
+//     // @ts-ignore
+//     console.log(counter[counterKey][0],counter[counterKey][1].name);
+//   }
+// }
+// console.log(counter);
 
-const isPalindrome = (word: string): boolean => {
-  for (let i = 0; i <= Math.floor(word.length / 2); i++) {
-    if (word[i] !== word[word.length - 1 - i]) {
-      return false;
-    }
-  }
-  return true;
+import { faker } from '@faker-js/faker/locale/en';
+
+type peuple = {
+  name: string;
+  age: number;
+  gender: string;
 };
 
-for (const test of tests) {
-  const [word, expected] = test;
-
-  const result = isPalindrome(word);
-  if (result !== expected) {
-    console.log(`Для слова "${word}" тест не прошел. Ожидалось: ${expected} | Получено: ${result}`);
-    continue;
+const Persons = (number: number): peuple[] => {
+  const multyHuman: peuple[] = [];
+  for (let i = 0; i < number; i++) {
+    const human: peuple = {
+      name: faker.person.fullName(),
+      age: Math.round(Math.random() * 100),
+      gender: faker.person.sex(),
+    };
+    multyHuman.push(human);
   }
+  return multyHuman;
+};
 
-  console.log(`Слово "${word}" успешно. Результат: ${result}`);
-}
+const testGroup = Persons(5);
+
+const test = testGroup.find((person) => person.age > 10);
+
+console.log(test);
