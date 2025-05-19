@@ -28,6 +28,7 @@
 //   nick: '',
 //   info: {},
 // };
+// @ts-ignore
 
 // type A = {
 //   first: string;
@@ -576,27 +577,103 @@
 // ]
 //  */
 
-const storage = [
-  { age: 10, name: 'first' },
-  { age: 20, name: 'second' },
-  { age: 30, name: 'third' },
-  { age: 40, name: 'fourth' },
+// const storage = [
+//   { age: 10, name: 'first' },
+//   { age: 20, name: 'second' },
+//   { age: 30, name: 'third' },
+//   { age: 40, name: 'fourth' },
+// ];
+//
+// const storage2 = storage.map((person) => {
+//   return {
+//     age: person.name,
+//     name: person.age,
+//     reversed: true,
+//   };
+// });
+//
+// console.log(storage2);
+// /* Ожидаемый вывод:
+// [
+//   { age: 'first', name: 10, reversed: true },
+//   { age: 'second', name: 20, reversed: true },
+//   { age: 'third', name: 30, reversed: true },
+//   { age: 'fourth', name: 40, reversed: true }
+// ]
+// */
+
+const sort = (array: ??[], key: ??, direction: ??) => {
+  const newArray = array;
+
+  // @ts-ignore
+  newArray.sort((a, b) =>{
+    if (a[key] > b[key]) {
+      return direction === 'desc' ? -1 : 1;
+    }
+    if (a[key] < b[key]) {
+      return direction === null ? 1 : -1;
+    }
+    return 0;
+
+  }
+  // @ts-ignore
+  return newArray
+};
+
+type User = { id: number; age: number; name: string };
+
+const users: User[] = [
+  { id: 1, age: 10, name: 'zxc' },
+  { id: 3, age: 20, name: 'juk' },
+  { id: 6, age: 2, name: 'aa' },
+  { id: 9, age: 1, name: 'ab' },
+  { id: 2, age: 5, name: 'zz' },
 ];
 
-const storage2 = storage.map((person) => {
-  return {
-    age: person.name,
-    name: person.age,
-    reversed: true,
-  };
-});
-
-console.log(storage2);
-/* Ожидаемый вывод:
+// @ts-ignore
+const sortedByIdAsc = sort(users, 'id');
+console.log(sortedByIdAsc);
+/* Отсортированы по увеличению id
 [
-  { age: 'first', name: 10, reversed: true },
-  { age: 'second', name: 20, reversed: true },
-  { age: 'third', name: 30, reversed: true },
-  { age: 'fourth', name: 40, reversed: true }
+  { id: 1, age: 10, name: 'zxc' },
+  { id: 2, age: 5, name: 'zz' },
+  { id: 3, age: 20, name: 'juk' },
+  { id: 6, age: 2, name: 'aa' },
+  { id: 9, age: 1, name: 'ab' }
 ]
-*/
+ */
+
+const sortedByNameDesc = sort(users, 'name', 'desc');
+console.log(sortedByNameDesc);
+/* Отсортированы по уменьшению имени
+[
+  { id: 2, age: 5, name: 'zz' },
+  { id: 1, age: 10, name: 'zxc' },
+  { id: 3, age: 20, name: 'juk' },
+  { id: 9, age: 1, name: 'ab' },
+  { id: 6, age: 2, name: 'aa' }
+]
+ */
+
+const sortedByAgeDesc = sort(users, 'age', 'desc');
+console.log(sortedByAgeDesc);
+/* Отсортированы по уменьшению возраста
+[
+  { id: 3, age: 20, name: 'juk' },
+  { id: 1, age: 10, name: 'zxc' },
+  { id: 2, age: 5, name: 'zz' },
+  { id: 6, age: 2, name: 'aa' },
+  { id: 9, age: 1, name: 'ab' }
+]
+ */
+
+console.log(users);
+/* ПЕРВОНАЧАЛЬНЫЙ МАССИВ USERS ОСТАЛСЯ НЕ ТРОНУТЫМ!
+[
+  { id: 1, age: 10, name: 'zxc' },
+  { id: 3, age: 20, name: 'juk' },
+  { id: 6, age: 2, name: 'aa' },
+  { id: 9, age: 1, name: 'ab' },
+  { id: 2, age: 5, name: 'zz' }
+]
+ */
