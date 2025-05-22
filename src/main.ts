@@ -28,7 +28,6 @@
 //   nick: '',
 //   info: {},
 // };
-// @ts-ignore
 
 // type A = {
 //   first: string;
@@ -749,31 +748,31 @@
 // const maxBalance = calculateBalanceForUser(max); // Его история операция: -3 + 9 - 18 + 3
 // console.log(maxBalance); // -9
 
-const values = [
-  [1, 100],
-  [2, 200],
-  [3, 300],
-  [1, 2],
-  [3, 400],
-  [4, 500],
-  [1, 99],
-];
-
-const result = values.reduce(
-  (acc: Record<string, { count: number; sum: number }>, cur: number[]) => {
-    const evaluation = cur[0].toString();
-    if (!acc[evaluation]) {
-      acc[evaluation] = { count: 1, sum: cur[1] };
-      return acc;
-    }
-    acc[evaluation].count += 1;
-    acc[evaluation].sum += cur[1];
-    return acc;
-  },
-  {} as Record<string, { count: number; sum: number }>,
-);
-
-console.log(result);
+// const values = [
+//   [1, 100],
+//   [2, 200],
+//   [3, 300],
+//   [1, 2],
+//   [3, 400],
+//   [4, 500],
+//   [1, 99],
+// ];
+//
+// const result = values.reduce(
+//   (acc: Record<string, { count: number; sum: number }>, cur: number[]) => {
+//     const evaluation = cur[0].toString();
+//     if (!acc[evaluation]) {
+//       acc[evaluation] = { count: 1, sum: cur[1] };
+//       return acc;
+//     }
+//     acc[evaluation].count += 1;
+//     acc[evaluation].sum += cur[1];
+//     return acc;
+//   },
+//   {} as Record<string, { count: number; sum: number }>,
+// );
+//
+// console.log(result);
 /*
 {
   '1': { count: 3, sum: 201 },
@@ -781,10 +780,55 @@ console.log(result);
   '3': { count: 2, sum: 700 },
   '4': { count: 1, sum: 500 }
 }
+/*
 
-(Объяснение) Если не поняли, это означает, что:
-Оценка 1 встретилась 3 раза - [1, 100], [1, 2] и [1, 99] и всего = 201 чел (100+2+99)
-Оценка 2 встретилась 1 раз - [2, 200] и всего 200 чел
-Оценка 3 встретилась 2 раза - [3, 300] и [3, 400] и всего 700 чел
-Оценка 4 встретилась 1 раз - [4, 500] и всего 500 чел
  */
+
+type Merge = {
+  merge: string;
+};
+
+const merge = <T, D>(a: T, b: D, order?: 1 | 2): T & D & Merge => {
+  // ... Ваш код здесь
+  const x = order ?? 1;
+  return { ...a, ...b, merge: x > 1 ? 'YES' : 'NO' };
+};
+
+const obj1 = { a: 10, b: 'b', c: 100, child: { name: 'ch', surname: 'hc' } };
+const obj2 = { a: 20, b: ['b'], d: 200, child: { aa: 'aa', bb: 'bb' } };
+
+console.log(merge(obj1, obj2));
+/* Вывод:
+{
+  a: 20,
+  b: [ 'b' ],
+  c: 100,
+  child: { aa: 'aa', bb: 'bb' },
+  d: 200,
+  merged: 'NO!'
+}
+*/
+
+console.log(merge(obj1, obj2, 1));
+/* Вывод:
+{
+  a: 20,
+  b: [ 'b' ],
+  c: 100,
+  child: { aa: 'aa', bb: 'bb' },
+  d: 200,
+  merged: 'NO!'
+}
+*/
+
+console.log(merge(obj1, obj2, 2));
+/* Вывод:
+{
+  a: 10,
+  b: 'b',
+  c: 100,
+  child: { name: 'ch', surname: 'hc' },
+  d: 200,
+  merged: 'YES!'
+}
+*/
