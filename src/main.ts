@@ -904,40 +904,28 @@
 // console.log(otherNicks); // [ 'vv', 'gg' ]
 // console.log(nick1); // childName
 // console.log(child1); // undeined
-// type Person = {
-//   name: string;
-// };
-//
-// type Paginated<T = never> = {
-//   // Вопрос про невер
-//   total: number;
-//   limit: number;
-//   offset: number;
-//   items: T[];
-// };
-//
-// const responseOfPersons: Paginated<Person> = {
-//   total: 10,
-//   limit: 5,
-//   offset: 0,
-//   items: [{ name: 'P1' }],
-// };
-//
-// const responseOfSomething: Paginated = {
-//   total: 10,
-//   limit: 5,
-//   offset: 0,
-//   items: [],
-// };
-
 type Person = {
   name: string;
 };
-type WithId<T> = T & {
-  id: number;
+
+type Paginated<T = never> = {
+  // Вопрос про невер
+  total: number;
+  limit: number;
+  offset: number;
+  items: T[];
 };
 
-const p: WithId<Person> = {
-  id: 1,
-  name: 'name',
+const responseOfPersons: Paginated<Person> = {
+  total: 10,
+  limit: 5,
+  offset: 0,
+  items: [{ name: 'P1' }],
+};
+
+const responseOfSomething: Paginated = {
+  total: 10,
+  limit: 5,
+  offset: 0,
+  items: [],
 };
