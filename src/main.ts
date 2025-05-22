@@ -784,51 +784,77 @@
 
  */
 
-type Merge = {
-  merge: string;
-};
+// type Merge = {
+//   merge: string;
+// };
+//
+// const merge = <T, D>(a: T, b: D, order?: 1 | 2): T & D & Merge => {
+//   // ... Ваш код здесь
+//   const x = order ?? 1;
+//   return { ...a, ...b, merge: x > 1 ? 'YES' : 'NO' };
+// };
+//
+// const obj1 = { a: 10, b: 'b', c: 100, child: { name: 'ch', surname: 'hc' } };
+// const obj2 = { a: 20, b: ['b'], d: 200, child: { aa: 'aa', bb: 'bb' } };
+//
+// console.log(merge(obj1, obj2));
+// /* Вывод:
+// {
+//   a: 20,
+//   b: [ 'b' ],
+//   c: 100,
+//   child: { aa: 'aa', bb: 'bb' },
+//   d: 200,
+//   merged: 'NO!'
+// }
+// */
+//
+// console.log(merge(obj1, obj2, 1));
+// /* Вывод:
+// {
+//   a: 20,
+//   b: [ 'b' ],
+//   c: 100,
+//   child: { aa: 'aa', bb: 'bb' },
+//   d: 200,
+//   merged: 'NO!'
+// }
+// */
+//
+// console.log(merge(obj1, obj2, 2));
+// /* Вывод:
+// {
+//   a: 10,
+//   b: 'b',
+//   c: 100,
+//   child: { name: 'ch', surname: 'hc' },
+//   d: 200,
+//   merged: 'YES!'
+// }
+// */
+const storage = [
+  'nick',
+  'nack',
+  'nock',
+  [
+    {
+      first: 'forecast',
+      child: null,
+    },
+    {
+      first: 'castfore',
+      child: null,
+    },
+    'zzz',
+  ],
+  'no-1',
+  'no-2',
+] as const;
 
-const merge = <T, D>(a: T, b: D, order?: 1 | 2): T & D & Merge => {
-  // ... Ваш код здесь
-  const x = order ?? 1;
-  return { ...a, ...b, merge: x > 1 ? 'YES' : 'NO' };
-};
+const [firstElement, secondElement, thirdElement, fourthElement, ...nos] = storage;
+const [firstElement1, secondElement1, thirdElement1, [fistElement2, secondElement2, cos], ...other1] = storage;
+const [firstElement3, secondElement3, thirdElement3, [fistElement4, b1, other3], ...other2] = storage;
 
-const obj1 = { a: 10, b: 'b', c: 100, child: { name: 'ch', surname: 'hc' } };
-const obj2 = { a: 20, b: ['b'], d: 200, child: { aa: 'aa', bb: 'bb' } };
-
-console.log(merge(obj1, obj2));
-/* Вывод:
-{
-  a: 20,
-  b: [ 'b' ],
-  c: 100,
-  child: { aa: 'aa', bb: 'bb' },
-  d: 200,
-  merged: 'NO!'
-}
-*/
-
-console.log(merge(obj1, obj2, 1));
-/* Вывод:
-{
-  a: 20,
-  b: [ 'b' ],
-  c: 100,
-  child: { aa: 'aa', bb: 'bb' },
-  d: 200,
-  merged: 'NO!'
-}
-*/
-
-console.log(merge(obj1, obj2, 2));
-/* Вывод:
-{
-  a: 10,
-  b: 'b',
-  c: 100,
-  child: { name: 'ch', surname: 'hc' },
-  d: 200,
-  merged: 'YES!'
-}
-*/
+console.log(nos); // [ 'no-1', 'no-2' ]
+console.log(cos); // [ 'zzz' ]
+console.log(b1); // { first: 'castfore', child: null }
