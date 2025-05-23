@@ -931,35 +931,44 @@
 //   items: [],
 // };
 
-const matrix = [
-  [1, 2, 4],
-  [3, 5, 4],
-  [4, 4, 7],
-  [3, 5, 9],
-];
-
-// const result = matrix.reduce((acc: number[], cur: number[]): number[] => {
-//   for (let i = 0; i < cur.length; i++) {
-//     if (!acc.includes(cur[i])) {
-//       acc.push(cur[i]);
+// const matrix = [
+//   [1, 2, 4],
+//   [3, 5, 4],
+//   [4, 4, 7],
+//   [3, 5, 9],
+// ];
+//
+// // const result = matrix.reduce((acc: number[], cur: number[]): number[] => {
+// //   for (let i = 0; i < cur.length; i++) {
+// //     if (!acc.includes(cur[i])) {
+// //       acc.push(cur[i]);
+// //     }
+// //   }
+// //   return acc;
+// // }, []);
+// //
+// // console.log(result.sort((a: number, b: number) => a - b));
+//
+// const flatUniq = (matrix: number[][]) => {
+//   const result: number[] = [];
+//   for (let i = 0; i < matrix.length; i++) {
+//     const massive = matrix[i];
+//     for (let j = 0; j < massive.length; j++) {
+//       if (!result.includes(massive[j])) {
+//         result.push(massive[j]);
+//       }
 //     }
 //   }
-//   return acc;
-// }, []);
+//   return result.sort((a: number, b: number) => a - b);
+// };
 //
-// console.log(result.sort((a: number, b: number) => a - b));
+// console.log(flatUniq(matrix));
 
-const flatUniq = (matrix: number[][]) => {
-  const result: number[] = [];
-  for (let i = 0; i < matrix.length; i++) {
-    const massive = matrix[i];
-    for (let j = 0; j < massive.length; j++) {
-      if (!result.includes(massive[j])) {
-        result.push(massive[j]);
-      }
-    }
-  }
-  return result.sort((a: number, b: number) => a - b);
+const numbers = [0, 2, 1, 4];
+
+const findMaxDoble = (acc: number[]): number => {
+  acc.sort((a: number, b: number) => a - b);
+  return acc[acc.length - 2];
 };
 
-console.log(flatUniq(matrix));
+console.log(findMaxDoble(numbers));
