@@ -930,3 +930,20 @@
 //   offset: 0,
 //   items: [],
 // };
+const matrix = [
+  [1, 2, 4],
+  [3, 5, 4],
+  [4, 4, 7],
+  [3, 5, 9],
+];
+
+const result = matrix.reduce((acc: number[], cur: number[]): number[] => {
+  for (let i = 0; i < cur.length; i++) {
+    if (!acc.includes(cur[i])) {
+      acc.push(cur[i]);
+    }
+  }
+  return acc;
+}, []);
+
+console.log(result.sort((a: number, b: number) => a - b));
