@@ -964,11 +964,34 @@
 //
 // console.log(flatUniq(matrix));
 
-const numbers = [0, 2, 1, 4];
+// const numbers = [0, 2, 1, 4];
+//
+// const findMaxDoble = (acc: number[]): number => {
+//   acc.sort((a: number, b: number) => a - b);
+//   return acc[acc.length - 2];
+// };
+//
+// console.log(findMaxDoble(numbers));
 
-const findMaxDoble = (acc: number[]): number => {
-  acc.sort((a: number, b: number) => a - b);
-  return acc[acc.length - 2];
+const getMissingDigits = (acc: number[]): number[] => {
+  const result = [1];
+  for (let i = 1; i < acc.length; i++) {
+    if (acc[i] - acc[i - 1] === 1) {
+      result.push(acc[i]);
+      continue;
+    }
+    result.push(acc[i]);
+    const margin = acc[i] - acc[i - 1];
+    for (let j = 0; j < margin - 1; j++) {
+      result.push(acc[i] - j - 1);
+    }
+  }
+  return result.sort((a: number, b: number) => a - b);
 };
 
-console.log(findMaxDoble(numbers));
+const result1 = getMissingDigits([1, 2, 3, 5, 8, 10, 11, 13]); // [4, 6, 7, 9, 12];
+console.log(result1);
+
+// const result2 = getMissingDigits([1, 2, 5, 3]); // null
+//
+// const result3 = getMissingDigits([1, 5]); // [2, 3, 4]
