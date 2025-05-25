@@ -997,32 +997,80 @@
 // // const result3 = getMissingDigits([1, 5]); // [2, 3, 4]
 // Здесь TLD - ru
 
-const sampleUri1 = 'https://username:password@www.example.ru:888/path.to/something?a=b&c=d.e.f.g';
+// const sampleUri1 = 'https://username:password@www.example.ru:888/path.to/something?a=b&c=d.e.f.g';
+//
+// // Здесь TLD - com
+// const sampleUri2 = 'https://www.example.com/path.to/something?a=b&c=d.e.f.g';
+//
+// // Здесь TLD - localhost
+// const sampleUri3 = 'https://localhost/path.to/something?a=b&c=d.e.f.g';
+//
+// // const domainName = ['ru', 'com'];
+//
+// const findTdl = (domainL: string): string => {
+//   if (domainL.includes('localhost')) {
+//     return 'localhost';
+//   }
+//   const nameSplit = domainL.split('/')[2];
+//   const nameSplit2 = nameSplit.split(':');
+//
+//   if (nameSplit2.length === 1) {
+//     const nameSplit3 = nameSplit2[0].split('.');
+//     return nameSplit3[nameSplit3.length - 1];
+//   }
+//   const nameSplit3 = nameSplit2[1].split('.');
+//
+//   return nameSplit3[nameSplit3.length - 1];
+// };
+//
+// console.log(findTdl(sampleUri1));
+// console.log(findTdl(sampleUri2));
+// console.log(findTdl(sampleUri3));
 
-// Здесь TLD - com
-const sampleUri2 = 'https://www.example.com/path.to/something?a=b&c=d.e.f.g';
+const arr1 = [1, 5, 10];
+const arr2 = [1, 2, 3, 5, 9, 11, 12, 13];
 
-// Здесь TLD - localhost
-const sampleUri3 = 'https://localhost/path.to/something?a=b&c=d.e.f.g';
+// const merge = (arr1: number[], arr2: number[]) => {
+//   const result = [];
+//   for (let i = 0; i < arr1.length - 1; i++) {
+//     for (let j = 0; j < arr2.length - 1; j++) {
+//       if (arr1[i] > arr2[j]) {
+//         result.push(arr2[j]);
+//         continue;
+//       }
+//       if (arr1[i] === arr2[j]) {
+//         result.push(arr2[i]);
+//         result.push(arr2[j]);
+//       }
+//     }
+//   }
+//   return result;
+// };
 
-// const domainName = ['ru', 'com'];
+const merge = (arr1: number[], arr2: number[]) => {
+  const result: number[] = [];
+  let countArr1 = 0;
+  let countArr2 = 0;
 
-const findTdl = (domainL: string): string => {
-  if (domainL.includes('localhost')) {
-    return 'localhost';
+  while (result.length !== arr1.length + arr2.length) {
+    if (arr1[countArr1] > arr2[countArr2]) {
+      result.push(arr2[countArr2]);
+      countArr2 += 1;
+      continue;
+    }
+    if (arr1[countArr1] === arr2[countArr2]) {
+      result.push(arr2[countArr2]);
+      result.push(arr1[countArr1]);
+      countArr1 += 1;
+      countArr2 += 1;
+      continue;
+    }
+    result.push(arr1[countArr1]);
   }
-  const nameSplit = domainL.split('/')[2];
-  const nameSplit2 = nameSplit.split(':');
-
-  if (nameSplit2.length === 1) {
-    const nameSplit3 = nameSplit2[0].split('.');
-    return nameSplit3[nameSplit3.length - 1];
-  }
-  const nameSplit3 = nameSplit2[1].split('.');
-
-  return nameSplit3[nameSplit3.length - 1];
+  return result;
 };
 
-console.log(findTdl(sampleUri1));
-console.log(findTdl(sampleUri2));
-console.log(findTdl(sampleUri3));
+// Результат:
+
+console.log(merge(arr1, arr2));
+// const result = [1, 1, 2, 3, 5, 5, 9, 10, 11, 12, 13];
