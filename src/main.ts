@@ -973,25 +973,56 @@
 //
 // console.log(findMaxDoble(numbers));
 
-const getMissingDigits = (acc: number[]): number[] => {
-  const result = [1];
-  for (let i = 1; i < acc.length; i++) {
-    if (acc[i] - acc[i - 1] === 1) {
-      result.push(acc[i]);
-      continue;
-    }
-    result.push(acc[i]);
-    const margin = acc[i] - acc[i - 1];
-    for (let j = 0; j < margin - 1; j++) {
-      result.push(acc[i] - j - 1);
-    }
+// const getMissingDigits = (acc: number[]): number[] => {
+//   const result = [1];
+//   for (let i = 1; i < acc.length; i++) {
+//     if (acc[i] - acc[i - 1] === 1) {
+//       result.push(acc[i]);
+//       continue;
+//     }
+//     result.push(acc[i]);
+//     const margin = acc[i] - acc[i - 1];
+//     for (let j = 0; j < margin - 1; j++) {
+//       result.push(acc[i] - j - 1);
+//     }
+//   }
+//   return result.sort((a: number, b: number) => a - b);
+// };
+//
+// const result1 = getMissingDigits([1, 2, 3, 5, 8, 10, 11, 13]); // [4, 6, 7, 9, 12];
+// console.log(result1);
+//
+// // const result2 = getMissingDigits([1, 2, 5, 3]); // null
+// //
+// // const result3 = getMissingDigits([1, 5]); // [2, 3, 4]
+// Здесь TLD - ru
+
+const sampleUri1 = 'https://username:password@www.example.ru:888/path.to/something?a=b&c=d.e.f.g';
+
+// Здесь TLD - com
+const sampleUri2 = 'https://www.example.com/path.to/something?a=b&c=d.e.f.g';
+
+// Здесь TLD - localhost
+const sampleUri3 = 'https://localhost/path.to/something?a=b&c=d.e.f.g';
+
+// const domainName = ['ru', 'com'];
+
+const findTdl = (domainL: string): string => {
+  if (domainL.includes('localhost')) {
+    return 'localhost';
   }
-  return result.sort((a: number, b: number) => a - b);
+  const nameSplit = domainL.split('/')[2];
+  const nameSplit2 = nameSplit.split(':');
+
+  if (nameSplit2.length === 1) {
+    const nameSplit3 = nameSplit2[0].split('.');
+    return nameSplit3[nameSplit3.length - 1];
+  }
+  const nameSplit3 = nameSplit2[1].split('.');
+
+  return nameSplit3[nameSplit3.length - 1];
 };
 
-const result1 = getMissingDigits([1, 2, 3, 5, 8, 10, 11, 13]); // [4, 6, 7, 9, 12];
-console.log(result1);
-
-// const result2 = getMissingDigits([1, 2, 5, 3]); // null
-//
-// const result3 = getMissingDigits([1, 5]); // [2, 3, 4]
+console.log(findTdl(sampleUri1));
+console.log(findTdl(sampleUri2));
+console.log(findTdl(sampleUri3));
