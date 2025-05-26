@@ -1027,8 +1027,8 @@
 // console.log(findTdl(sampleUri2));
 // console.log(findTdl(sampleUri3));
 
-const arr1 = [1, 5, 10];
-const arr2 = [1, 2, 3, 5, 9, 11, 12, 13];
+// const arr1 = [1, 5, 10];
+// const arr2 = [1, 2, 3, 5, 9, 11, 12, 13];
 
 // const merge = (arr1: number[], arr2: number[]) => {
 //   const result = [];
@@ -1046,31 +1046,162 @@ const arr2 = [1, 2, 3, 5, 9, 11, 12, 13];
 //   }
 //   return result;
 // };
+// const arr1 = [1, 5, 6, 10, 22];
+// const arr2 = [1, 2, 3, 5, 6, 11, 12, 13];
+//
+// const merge = (arr1: number[], arr2: number[]) => {
+//   const result: number[] = [];
+//   let countArr1 = 0;
+//   let countArr2 = 0;
+//
+//   while (countArr1 < arr1.length || countArr2 < arr2.length) {
+//     if (arr1[countArr1] >= arr2[countArr2]) {
+//       result.push(arr2[countArr2]);
+//       countArr2++;
+//     } else {
+//       result.push(arr1[countArr1]);
+//       countArr1++;
+//     }
+//   }
+//   return result;
+// };
+//
+// // Результат:
+//
+// console.log(merge(arr1, arr2));
+// // const result = [1, 1, 2, 3, 5, 5, 9, 10, 11, 12, 13];
 
-const merge = (arr1: number[], arr2: number[]) => {
-  const result: number[] = [];
-  let countArr1 = 0;
-  let countArr2 = 0;
+// const g = { a: 1, b: '', c: true };
+//
+// const getValue = <T, D extends keyof T>(g: T, key: D): T[D] => {
+//   return g[key];
+// };
+// const typeTest1: number = getValue(g, 'a');
+// const typeTest2: string = getValue(g, 'b');
+// const typeTest3: boolean = getValue(g, 'c');
+//
+// const a = { id: 1, name: 's' };
+//
+// console.log(getValue(a, 'id')); // 1
+// console.log(getValue(a, 'name')); // 2
+// // console.log(getValue(a, 'key')); // Ошибка! Ключа key нет в { id: number, name: string };
+//
+// // console.log(getValue({}, 'age')); // Ошибка! Ключа age нет в {}
+//
+// const b = { email: 'ex' };
+// console.log(getValue(b, 'email')); // ex
+// // console.log(getValue(b, '')); // Ошибка! Ключа '' нет в { email: string }
+//
+// console.log(getValue({ ...a, x: 10 }, 'x')); // 10
+// console.log(getValue({ ...a, x: 10 }, 'name')); // s
+// console.log(getValue({ ...a, x: 10 }, 'id')); // 1
+// // console.log(getValue({ ...a, x: 10 }, 's')); // Ошибка! Ключа s нет в { id: number, name: string, x: number }
+//
+// console.log(getValue({ ...b, ...a }, 'email')); // ex
+//
+// const checkNumber: number = getValue({ age: 1 }, 'age');
+// const checkBoolean: boolean = getValue({ a: true }, 'a');
+// const checkNull: null = getValue({ x: null }, 'x');
+//
+// console.log(getValue({ a: 'str' }, 'a').toUpperCase()); // STR
+// console.log(getValue({ a: 10 }, 'a') ** 2); // 100
+// let user = {
+//   age: 10,
+//   name: 'Original Name',
+// };
+// const update = <T>(user: T, update: Partial<T>) => {
+//   return { ...user, ...update };
+// };
+// user = update(user, {}); // Поля не переданы - нечего обновлять
+// console.log(user); // { age: 10, name: 'Original Name' }
+// if (user.age !== 10 || user.name !== 'Original Name') {
+//   throw Error('It is not working');
+// }
+//
+// user = update(user, { age: 23 }); // Обновить возраст
+// console.log(user); // { age: 23, name: 'Original Name' }
+// if (user.age !== 23 || user.name !== 'Original Name') {
+//   throw Error('It is not working');
+// }
+//
+// user = update(user, { name: 'Updated Name' }); // Обновить имя
+// console.log(user); // { age: 23, name: 'Updated Name' }
+// if (user.age !== 23 || user.name !== 'Updated Name') {
+//   throw Error('It is not working');
+// }
+//
+// user = update(user, { age: 100, name: 'name' }); // Обновить имя и возраст
+// console.log(user); // { age: 23, name: 'Updated Name' }
+// if (user.age !== 100 || user.name !== 'name') {
+//   throw Error('It is not working');
+// }
+//
+// // Строки ниже должны подчеркивать ошибку! Для запуска можете их закомментировать
+// update(user, { age: 100, name: 'name', a: 10 }); // Здесь должна гореть ошибка! Поля "a" нет в объекте user!
+// update(user, { x: true }); // Здесь должна гореть ошибка! Поля "x" нет в объекте user!
+// update(user, { age: true }); // Здесь должна гореть ошибка! Должен был быть тип number, но передан "boolean"
+// update(user); // Здесь должна гореть ошибка! Второй аргумент обязательно должен быть!
+type User = {
+  name: string;
+  surname: string;
+  faaang: string;
+  x: string;
+};
 
-  while (result.length !== arr1.length + arr2.length) {
-    if (arr1[countArr1] > arr2[countArr2]) {
-      result.push(arr2[countArr2]);
-      countArr2 += 1;
-      continue;
+const user: User = {
+  name: 'aaabcdeeeef',
+  surname: 'hhfooodgeeeerg',
+  faaang: 'ffaanngg',
+  x: 'xxxxxxxxxxxxxxxxxxxx',
+};
+
+const encode = (user: Record<string, string>) => {
+  const text = JSON.stringify(user);
+  let count = 1;
+  let result = '';
+
+  for (let i = 0; i < text.length - 1; i++) {
+    if (text[i] === text[i + 1]) {
+      count++;
+    } else {
+      result += text[i] + (count === 1 ? '' : count.toString());
+
+      count = 1;
     }
-    if (arr1[countArr1] === arr2[countArr2]) {
-      result.push(arr2[countArr2]);
-      result.push(arr1[countArr1]);
-      countArr1 += 1;
-      countArr2 += 1;
-      continue;
-    }
-    result.push(arr1[countArr1]);
   }
   return result;
 };
+const decode = <T>(encodedText: string): T => {
+  let result = '';
+  let count = '';
+  let char = '';
 
-// Результат:
+  for (const encodedTextElement of encodedText) {
+    if (!isNaN(Number(encodedTextElement))) {
+      count += encodedTextElement;
+    } else {
+      result += char.repeat(count ? Number(count) : 1);
+      char = encodedTextElement;
+      count = '';
+    }
+  }
+  result += '}';
+  return JSON.parse(result);
+};
 
-console.log(merge(arr1, arr2));
-// const result = [1, 1, 2, 3, 5, 5, 9, 10, 11, 12, 13];
+console.log(decode('{"name":"a3bcde4f","surname":"h2fo3dge4rg","fa3ng":"f2a2n2g2","x":"x20"}'));
+const encoded: string = encode(user);
+const expectedEncoded = '{"name":"a3bcde4f","surname":"h2fo3dge4rg","fa3ng":"f2a2n2g2","x":"x20"}';
+
+console.log('Закодированная строка', encoded);
+console.log('Кодирование:', encoded === expectedEncoded ? 'ВЕРНО' : 'ОШИБКА', '\n');
+
+// --------- Проверка декодирования
+const decoded: User = decode<User>(encoded);
+console.log('Декодированный объект', decoded);
+
+// try {
+//   deepStrictEqual(decoded, user);
+//   console.log('Декодирование ВЕРНОЕ!');
+// } catch (e) {
+//   console.log('Декодирование ОШИБКА!');
